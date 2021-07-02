@@ -5,16 +5,16 @@ org   0000h      ;Origem no endereço 00h de memória
  INICIO:      MOV R0,#0    
     MOV A,#0    ;Move a constante zero para o acumulador
  
- NOVO :   
+ NOVO:   
     MOV A,R0    ;Move o conteúdo de R0 para o acumulador
     MOVC A,@A+DPTR  ;Move o byte relativo ao DPTR somado com o valor do acumulador para o acumulador
     JZ INICIO    ;Salto para subrotina INICIO
     MOV P1,A     ;Move o conteúdo do Acumulador para o PORT 1
     ACALL T1s    ;Chama subrotina de tempo (1 segundo)
     INC R0     ;Incrementa o valor que está no R0 (+1)
-    AJMP NOVO    ;Salta para o inicio da subrotina NOVO
+    SJMP NOVO    ;Salta para o inicio da subrotina NOVO
  
- T1s :      MOV R1,#8    ;Move a constante 8 para o registrador R1
+ T1s:      MOV R1,#8    ;Move a constante 8 para o registrador R1
  
  REP:       
     ACALL TEMPO   ;Chama a subrotina TEMPO
